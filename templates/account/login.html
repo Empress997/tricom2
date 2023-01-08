@@ -1,0 +1,49 @@
+{% extends "account/base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class = "container py-5">
+{% comment "" %}<h1>{% trans "Sign In" %}</h1>{% endcomment %}
+
+
+<div class="col-md-6 offset-md-3">
+<div class="card mb-4" id="forms">
+  <div class="card-body">
+    <div class = "text-center">
+    <img src="{% static 'images/tric_logo.png' %}"/>
+    </div>
+    <p class="h2 text-center">Welcome</p>
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+  <hr>
+  {% if socialaccount_providers %}
+
+
+<div class="socialaccount_ballot">
+<div class = "text-center">
+
+  <p>If you have not created an account yet, then please
+    <a href="{% url 'account_signup' %}">sign up</a> first.</p>
+    
+</div>
+</div>
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+
+{% endif %}
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

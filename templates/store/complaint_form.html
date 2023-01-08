@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class = "container py-5">
+<div class="col-md-6 offset-md-3">
+  <div class="card mb-4" id="forms">
+    <div class="card-header">
+      <small>
+      Please fill out this form about the details of your complaint, please wait for our confirmation email about your complaint.
+      </small>
+    </div>
+    <div class="card-body">
+      <form method="post" action="" enctype="multipart/form-data">
+        <fieldset>
+          {% csrf_token %}
+          <p class = "text-center">Complaint Contact Information</p>
+          {% for fm in form %}
+              <div class="form-group">
+                  {{fm.label_tag}}
+                  {{fm}}
+                  <small class="text-danger">{{fm.errors|striptags}}</small>
+              </div>
+          {% endfor %}
+          <hr>
+          <p class = "text-center">Tricycle Driver Information</p>
+          {% for fm in form_2 %}
+              <div class="form-group">
+                  {{fm.label_tag}}
+                  {{fm}}
+                  <small class="text-danger">{{fm.errors|striptags}}</small>
+              </div>
+          {% endfor %}
+          <hr>
+          <p class = "text-center">Please provide the information below according to your concern</p>
+          {% for fm in form_3 %}
+              <div class="form-group">
+                  {{fm.label_tag}}
+                  {{fm}}
+                  <small class="text-danger">{{fm.errors|striptags}}</small>
+              </div>
+          {% endfor %}
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </fieldset>
+
+        {% if form.non_field_errors %}
+          {% for error in non_field_errors %}
+              <p class="alert alert-danger my-3">
+                  {{error}}
+              </p>
+          {% endfor %}
+        {% endif %}
+
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock content %}

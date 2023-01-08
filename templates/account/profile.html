@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="par">
+
+
+  </div>
+
+  <div class="myInformation shadow-lg  mb-2 bg-body">
+    <h1>Profile Information</h1>
+    {% for information in informations  %}
+    {% if forloop.last %}
+    <img src="{{information.profile_picture.url}}"/><br><br>
+    <div class="personalInfo">
+      
+<h2>Name :  &nbsp;{{information.cname}}</h2>
+<h3>Address : &nbsp;{{information.address}}</h3>
+<h3>Email : &nbsp;{{request.user.email}}</h3>
+<h3>Contact : &nbsp;{{information.phone_number}}</h3>
+{% endif %}
+{% endfor %}
+<br>
+<a class="btn btn-success" href="{% url 'tricyhelp:edit-profile' %}" role="button">Edit Profile</a>
+    </div>
+<br><br><br>
+<hr>
+<p>Welcome to Project Tricom!<br><br>
+
+These terms and conditions outline the rules and regulations for the use of Tricom Website, located at Tricom.com<br><br>
+
+By accessing this website we assume you accept these terms and conditions. Do not continue to use Tricom
+ if you do not agree to take all of the terms and conditions stated on this page.<br><br>
+</p>
+  </div>
+{% endblock content %}

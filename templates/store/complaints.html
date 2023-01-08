@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="firstDiv shadow ">
+  <table class="table table-hover">
+    <thead >
+      <tr>
+        <th scope="col">Complaint Name</th>
+        <th scope="col">Driver/Operator Name</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for description in descriptions %}
+      <tr>
+        <td>{{description.cname}}</td>
+        <td>{{description.dname}}</td>
+        <td style="color: black;">{{description.verification}}</td>
+
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+      </div>
+{% endblock content %}
